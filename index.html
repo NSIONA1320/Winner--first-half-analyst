@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#09251d">
+<link rel="manifest" href="manifest.webmanifest">
+<title>WINNER FIRST HALF ANALYST</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#07130f;color:#f3f7f5;font:16px system-ui,Arial,sans-serif}
+header{padding:24px 18px;background:#0b2b20;border-bottom:1px solid #24533f}h1{font-size:23px;margin:0 0 8px}header p{margin:0;color:#c2d7cb}
+main{max-width:760px;margin:auto;padding:16px}.notice{background:#2b2412;border:1px solid #80652a;color:#f7e5ad;padding:13px;border-radius:12px;line-height:1.45}
+nav{display:flex;gap:8px;overflow:auto;margin:16px 0}button{background:#173c2d;color:white;border:1px solid #3b7459;border-radius:10px;padding:11px 14px;font-weight:600}button.active{background:#2e8056}
+section{background:#10231b;border:1px solid #244b38;border-radius:14px;padding:16px;margin:12px 0}h2{font-size:18px;margin:0 0 10px}.muted{color:#b5c9be}.stat{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat div{background:#0a1912;padding:12px;border-radius:10px}.big{font-size:22px;font-weight:700}
+footer{padding:20px;color:#9eb4a7;font-size:13px}
+</style>
+</head>
+<body>
+<header><h1>WINNER FIRST HALF ANALYST</h1><p>Analyse des buts en première et deuxième mi-temps</p></header>
+<main>
+<div class="notice"><strong>Version de démarrage :</strong> cette interface est installée, mais elle n'est pas encore connectée à une source de résultats en direct. Aucun match ni pronostic n'est inventé.</div>
+<nav>
+<button class="active" onclick="show('today',this)">Aujourd'hui</button>
+<button onclick="show('tomorrow',this)">Demain</button>
+<button onclick="show('teams',this)">Équipes</button>
+<button onclick="show('method',this)">Méthode</button>
+</nav>
+<section id="today"><h2>Matchs du jour</h2><p class="muted">Les rencontres réelles apparaîtront ici après connexion à une source de données football.</p><p><strong>Données insuffisantes</strong> — connexion aux statistiques en attente.</p></section>
+<section id="tomorrow" hidden><h2>Matchs de demain</h2><p class="muted">Aucun calendrier n'est affiché tant qu'une source fiable n'est pas connectée.</p></section>
+<section id="teams" hidden><h2>Analyse des équipes</h2><div class="stat"><div><span class="muted">Buts en 1re mi-temps</span><div class="big">—</div></div><div><span class="muted">Buts en 2e mi-temps</span><div class="big">—</div></div></div><p class="muted">Les moyennes, pourcentages et formes récentes seront calculés à partir de vrais matches.</p></section>
+<section id="method" hidden><h2>Comment fonctionne l'analyse</h2><ul><li>Comparer les buts marqués en première et deuxième mi-temps.</li><li>Étudier les 5, 10 ou 15 derniers matches.</li><li>Séparer les performances à domicile et à l'extérieur.</li><li>Afficher « données insuffisantes » si les informations manquent.</li></ul></section>
+</main>
+<footer>Projet gratuit en construction. Les statistiques ne constituent pas une garantie de gain aux paris.</footer>
+<script>
+function show(id,btn){document.querySelectorAll('main section').forEach(s=>s.hidden=s.id!==id);document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active')}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{})}
+</script>
+</body></html>
